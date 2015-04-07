@@ -29,9 +29,9 @@ Res = [];
 E = [];
 it = 1;
 for i = n:-1:2
-    while abs(A(i,i-1))>1.e-13
+    while abs(A(i,i-1))>1.e-13                  
         mu = A(i,i);
-        [q,r]=qr(A(1:i,1:i)-mu*eye(i));
+        [q,r]=qr(A(1:i,1:i) - mu*eye(i));
         A(1:i,1:i) = r*q + mu*eye(i);
         Res(:,it)=abs(diag(A,-1));
         it = it +1;
