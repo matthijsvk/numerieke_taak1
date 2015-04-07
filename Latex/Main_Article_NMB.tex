@@ -1,0 +1,61 @@
+\documentclass[]{article}
+\usepackage[]{algorithm2e}
+\usepackage{amsmath}
+\usepackage{framed}
+
+%opening
+\title{Practicum NMB : Eigenwaardenproblemen}
+\author{Matthijs van Keirsblick en Harald Schäfer}
+\date{vrijdag 25 april 2014}
+
+
+
+\newcommand{\opgave}[1]{\section*{Opgave #1}}
+
+
+\begin{document}
+
+\maketitle
+\opgave{1}
+
+We beginnen door een QR-factorisatie te berekenen van $A_{0}$ met eender welke methode. Vervolgens berekenen we $b = Q^{*}*b_{0}$. Met deze waarden kunnen we de iteratieve berekening starten die hieronder beschreven staat. De $G_{x}$ matrices zijn givens transformaties om de toegevoegde rijen van K terug op nul te stellen om zo terug een bovendriehoeksmatrix R te bekomen waarin de nieuwe waarden in verwerkt zijn.
+
+\begin{framed}
+
+\begin{algorithm}[H] 
+ $Q^{(0)}*R^{(0)} = A_{0}$\\
+ $b = Q^{(0)*}*b_{0}$\\
+ \For{i = 1 to k}{
+  $f = n*d$\\
+  $R^{(i)} = G_{f}^{*}*...*G_{1}^{*}*
+  \begin{bmatrix}
+    	R^{(i-1)}	\\
+    	K
+    \end{bmatrix}$\\
+  $R^{(i)} = R^{(i)}(:n,:)$\\
+  $Q^{(i)} = I*G_{1}*...*G_{f} $\\
+  $b^{(i)} = Q^{(i)*}*
+  \begin{bmatrix}
+      	b^{(i-1)}	\\
+      	c
+      \end{bmatrix}$\\
+  $b^{(i)} = b^{(i)}(:n,:)$\\
+ }
+ 
+ 
+% \caption{How to compute incremental least squares solution with QR factorisation}
+\end{algorithm}
+
+\end{framed}
+Aan het einde van elke iteratie is het mogelijk om $x^{(i)}$ te berekenen door achterwaardse substitutie toe te passen op de vergelijking $R^{(i)}*x^{(i)} = b^{(i)}$. Omdat na elke iteratie maar $R^{(i)}$ en  $b^{(i)}$ opgeslagen moet worden is het duidelijk dat het gebruikte geheugen niet toeneemt. Omdat de grootte van de matrices R en b niet toeneemt neemt het rekenwerk ook niet toe met elke iteratie. Voor het berekenen van een Givens-transformatie zijn 2 delingen, 2 vermenigvuldigen, een optelling en een vierkwantswortel nodig. Er moeten n*d Givens-transformaties berekend worden per iteratie. Een vermenigvuldiging met een rotatiematrix van grootte n+d zoals in dit geval vraagt 4*(n+d) vermenigvuldigingen en 2*(n+d) optellingen. Er gebeuren 2*n*d -1 van die matrix vermenigvuldiginge per iteratie. Tot slot  gebeurt er nog voor de berekening van de $b^{(i)}$ een matrix vermenigvuldiging waarvoor $(n+d)^2$ vermenigvuldigingen gebeuren en $(n+d-1)^2$ optellingen.
+
+\begin{itemize}
+  \item $n*d*2$ delingen
+  \item $n*d$ vierkantswortels
+  \item $n*d*2 + 2*(n+d)*(2*n*d-1) + (n+d-1)^2 \approx 4*n^2*d$ optellingen
+  \item $n*d*4 + 4*(n+d)*(2*n*d-1) + (n+d)^2 \approx 8*n^2*d$ vermenigvuldigingen
+\end{itemize}
+
+%\section{}
+
+\end{document}
