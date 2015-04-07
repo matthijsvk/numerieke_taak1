@@ -27,4 +27,5 @@ Rinsert
 Qinsert*Rinsert
 [Q,R]=qr(AD)
 Q*R
+Q'*randn(4,1)
 
