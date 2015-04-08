@@ -1,0 +1,55 @@
+function [E,residue,nbSteps] = bisection(A,a,b,tol)
+% Eigenvalue of tridiagonal matrix using the bisection method
+%   A       The matrix 
+%   a       The lower bound of the interval
+%   b       The upper bound of the interval
+%   tol     The precision with which to determine the eigenvalues
+
+%   E       The column vector with resulting eigenvalues
+%   residu  The matrix with residues after each step, one row per
+%   eigenvalue calculation
+
+% Choose an interval I=[a0,b0] that contains Lambda_i.
+% Therefore: p(b0) >= i and p(a0) < i.
+% Evaluate the polynomial sequence for a=(a0+b0)/2 and
+% count the signchanges in the sequence pi(a) ?w(a).
+% I fw(a) >= i: Replace in interval I b0 by a
+% Otherwise: Replace in interval I a0 by a.
+% Bisection Algorithm:
+% Generates converging sequence of smaller and smaller intervals that contain the eigenvalue i.
+
+[p,sBeforeA0] = sturmSeq(A,a); %number of eigvals before the interval, so first eigval in interval has index sBeforeA0 + 1
+[p,sBeforeB0] = sturmSeq(A,b);
+nbEigInterval = sBeforeB0 - sBeforeA0;
+E = zeros(nbEigInterval,1);
+
+n = size(A,1);
+eigA = eig(A);
+
+for k=sBeforeA0+1:sBeforeB0
+    % bisection for locating k'th eigenvalue
+    xl = a; %   lower bound
+    xu = b; %   upper bound
+    i = 1;  %   used for the residue
+    exactLambda = eigA(k); %    this too
+    x= rand(n,1);          %    this too
+    
+    while xu-xl >= tol
+        xn = (xl+xu)*.5;
+        i = i+1;
+        [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, this returns the number of eigenvalues in (-inf, xn)
+        residue(k - sBeforeA0,i) = norm(exactLambda*x - xn*x);
+        
+        if s >= k       % you counted too much, so it's located in the first half of the interval
+            xu = xn;
+        else            % not enough eigvalues found yet, search in second half of the interval
+            xl = xn;
+        end
+    end
+    
+    E(k - sBeforeA0) = xn;    %save calculated eigenvalues
+    nbSteps(k - sBeforeA0,1) = i;
+    
+end
+
+
