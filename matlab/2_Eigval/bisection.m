@@ -18,28 +18,32 @@ function [E,residue,nbSteps] = bisection(A,a,b,tol)
 % Bisection Algorithm:
 % Generates converging sequence of smaller and smaller intervals that contain the eigenvalue i.
 
-[p,sBeforeA0] = sturmSeq(A,a); %number of eigvals before the interval, so first eigval in interval has index sBeforeA0 + 1
-[p,sBeforeB0] = sturmSeq(A,b);
-nbEigInterval = sBeforeB0 - sBeforeA0;
+[p,sBeforeA0] = sturmSeq(A,a) %number of eigvals before the interval, so first eigval in interval has index sBeforeA0 + 1
+[p,sBeforeB0] = sturmSeq(A,b)
+[a,b]
+[sBeforeA0,sBeforeB0]
+nbEigInterval = sBeforeB0 - sBeforeA0
 E = zeros(nbEigInterval,1);
+residue = zeros(nbEigInterval,1);
+nbSteps = zeros(nbEigInterval,1);
 
 n = size(A,1);
 eigA = eig(A);
+maxSteps = 1000
+x= rand(n,1);     %for residue calculation
 
 for k=sBeforeA0+1:sBeforeB0
     % bisection for locating k'th eigenvalue
     xl = a; %   lower bound
     xu = b; %   upper bound
-    i = 1;  %   used for the residue
+    i = 1;  %   used for the residue and plotting
     exactLambda = eigA(k); %    this too
-    x= rand(n,1);          %    this too
     
-    while xu-xl >= tol
+    while xu-xl >= tol && i < maxSteps
         xn = (xl+xu)*.5;
         i = i+1;
         [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, this returns the number of eigenvalues in (-inf, xn)
         residue(k - sBeforeA0,i) = norm(exactLambda*x - xn*x);
-        
         if s >= k       % you counted too much, so it's located in the first half of the interval
             xu = xn;
         else            % not enough eigvalues found yet, search in second half of the interval
@@ -49,7 +53,6 @@ for k=sBeforeA0+1:sBeforeB0
     
     E(k - sBeforeA0) = xn;    %save calculated eigenvalues
     nbSteps(k - sBeforeA0,1) = i;
-    
 end
 
 
