@@ -13,13 +13,13 @@ while indexTests<= size(tests,1)
     Abegin = A + diag(offdiag,1) + diag(offdiag,-1);
     eigA = eig(Abegin);
     
-    number = 7;
+    number = 7; %the number of eigenvalues to get
     
     
     % get 'number' random eigenvalues with Rayleigh Shift
     startTime = cputime;
     
-    A = Abegin;
+    A = Abegin;%this does the same as opgave 4
     Res = [];
     E = [];
     it = 1;
@@ -42,6 +42,8 @@ while indexTests<= size(tests,1)
     if durationRayleigh == 0
         durationRayleigh= 0.0625;
     end
+    
+    
     
     % get 'number' eigenvalues with Bisect method
     startTime = cputime;

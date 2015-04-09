@@ -1,6 +1,6 @@
 % Dit bestand analyseert verschillen tussen QR methode zonder shift, met
 % Rayleigh Shift en met Wilkinson shift.
-clc;clear;close all
+clc;clear;close all;format short e
 
 load mat1.txt;
 mat1 = hess(mat1);
@@ -9,23 +9,24 @@ eigMat1 = eig(mat1);
 
 % Eerst plotten we berekeningen voor het vinden 1 eigenwaarde
 %QR zonder shift
-[eZonder,resZonder]=qr_zonder(mat1);
-figure(1)
-semilogy(resZonder)
+[eZonder,resZonder]=qr_zonder(mat1)
 
 %QR met Rqyleigh quotiënt shift
-[eRay,resRay]=qr_shiftrayleigh(mat1);
+[eRay,resRay]=qr_shiftrayleigh(mat1)
 
 %QR met Wilkinson shift
-[eWilk,resWilk]=qr_shiftwilkinson(mat1);
+[eWilk,resWilk]=qr_shiftwilkinson(mat1)
 
 %hold on
-figure(2)
+figure  %plot tot iteratie 30
 semilogy(1:30,resZonder(:,1:30),'-o', 1:size(resRay,2),resRay,'r:d', 1:size(resWilk,2),resWilk,'g--s');
 legend('qrZonder', 'qrRayleighShift', 'qrWilkinsonShift')
-xlabel('Aantal iteratiestappen');ylabel('Residu')
+xlabel('Aantal iteratiestappen');
+ylabel('Residu');
 
-% Nu berekenen we alle eigenwaardes volgens de verschillende methodes
+% Nu berekenen we alle eigenwaardes volgens de verschillende methodes. Ze
+% volgen allemaal dezelfde strategie, alleen zijn de mu's anders (0 bij
+% Zonder, A(i,i) bij Rayleigh en nog anders bij Wilkinson
 % Without Shift
 A = hess(mat1);
 Res = [];
@@ -90,4 +91,4 @@ itWilk = it;
 
 % Resultaten
 sort([EZonder',ERay',EWilk',eigMat1])
-ZonderRayWilk = [itZonder,itRay,itWilk]
+AantalStappen_Zonder_Ray_Wilk = [itZonder,itRay,itWilk]

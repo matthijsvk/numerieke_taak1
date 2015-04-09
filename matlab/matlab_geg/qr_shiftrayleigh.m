@@ -1,4 +1,4 @@
-function [e,q,res]=qr_shiftrayleigh(A)
+function [e,res]=qr_shiftrayleigh(A)
 
 % function [e,res]=qr_shiftrayleigh(A)
 %
@@ -35,4 +35,3 @@ end
 res = [res abs(A(n,n-1))];
 disp(sprintf('residu = %.1e', abs(A(n,n-1))));
 e = A(n,n);
-q = q(:,n);
