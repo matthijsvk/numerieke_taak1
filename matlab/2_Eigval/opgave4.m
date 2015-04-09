@@ -9,7 +9,7 @@ eigMat1 = eig(mat1);
 
 % Eerst plotten we berekeningen voor het vinden 1 eigenwaarde
 %QR zonder shift
-[eZonder,resZonder]=qr_zonder(mat1);gggggggggggg
+[eZonder,resZonder]=qr_zonder(mat1);
 figure(1)
 semilogy(resZonder)
 
