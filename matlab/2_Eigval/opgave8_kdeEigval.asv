@@ -1,0 +1,32 @@
+% Eigenvalue of tridiagonal matrix using the bisection method
+function [E,residue,i] = bisectionKdeEigval(A,k,tol)
+
+eigA = eig(A)
+
+% bisection itself for locating k'th eigenvalue
+xl = -1e100; %   x lower
+xu = 1e100; %   xupper
+i = 1;
+exactLambda = eigA(k)  % used for calculating the residue (A*x - lambda_i*x)
+x= rand(n,1);             % this too
+
+E = zeros(nbEigInterval,1);
+residue = zeros(nbEigInterval,1);
+
+while xu-xl >= 1e-15
+    xn = (xl+xu)*.5
+    i = i+1;
+    [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, this returns the number of eigenvalues in (-inf, xn)
+    residue(i) = 
+    if s >= k   % you counted too much, so it's located in the first half of the interval
+        xu = xn;
+    else           %not enough eigvalues found yet, search in second half of the interval
+        xl = xn ;
+    end
+end
+
+% semilogy(resid)
+% axis tight
+% title('Error in successive calculated eigenvalues and eigenvectors ||Tx - x\lambda||')
+% xlabel('iteration')
+% ylabel('error')

@@ -1,4 +1,4 @@
-function [e,q,res]=qr_shiftrayleigh(A)
+function [e,q,res]=qr_shiftrayleigh_withEigenvectors(A)
 
 % function [e,res]=qr_shiftrayleigh(A)
 %

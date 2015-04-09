@@ -38,6 +38,7 @@ for k=sBeforeA0+1:sBeforeB0
     xu = b; %   upper bound
     i = 1;  %   used for the residue and plotting
     exactLambda = eigA(k); %    this too
+    display('EIGENVALUE FOUND... NEXT')
     
     while xu-xl >= tol && i < maxSteps
         xn = (xl+xu)*.5;

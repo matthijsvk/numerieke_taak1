@@ -12,7 +12,7 @@
 \author{Matthijs van Keirsblick en Harald Sch\"{a}fer}
 \date{vrijdag 25 april 2014}
 
-\newcommand{\opgave}[1]{\section*{Opgave #1}}
+\newcommand{\opgave}[1]{\pagebreak\section*{Opgave #1}}
 
 
 \begin{document}
@@ -66,7 +66,7 @@ Omdat de Hessenberg vorm al bijna bovendriehoeks is, kan de QR factorisatie in m
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave3.eps}
 \end{center}
-\caption{Opgave 3: De structuur van de Hessenberg- vorm van mat1}
+\caption{Opgave 3. De structuur van de Hessenberg- vorm van mat1}
 \end{figure}
 
 \opgave{4}
@@ -78,7 +78,7 @@ De Wilkinson Shift heeft in dit geval een snellere convergentie door een (toeval
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave4.eps}
 \end{center}
-\caption{Opgave 4: De fout op het berekenen van \'e\'en eigenwaarde.}
+\caption{Opgave 4. De fout op het berekenen van \'e\'en eigenwaarde.}
 \label{figuurtje}
 \end{figure}
 
@@ -223,14 +223,14 @@ end
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave8.eps}
 \end{center}
-\caption{Opgave 8: De evolutie van het residu bij het berekenen van een aantal eigenwaardes}
+\caption{Opgave 8. Bisectiemethode: evolutie van het residu voor berekeningen van een aantal eigenwaardes}
 \label{opgave8}
 \end{figure}
 
 
 Tests ter controle van de werking van deze Matlab- functies zijn hieronder weergegeven. In alle gevallen waarin de methode convergeert, gebeurt dit 
 \begin{itemize}
-	\item Een diagonale matrix met 5 gelijke eigenwaarden. Het algoritme vindt ze allemaal. Bij grote matrices van deze vorm worden vrij grote benaderingsfouten gemaakt voor de ide eigenwaarden. Bij de $i$-de eigenwaarde is de fout 2 keer zo groot als bij de $(i-1)$-de eigenwaarde.
+	\item Een diagonale matrix met 5 gelijke eigenwaarden. Het algoritme vindt ze allemaal. Bij grote matrices van deze vorm worden vrij grote benaderingsfouten gemaakt voor de ide eigenwaarden. Bij de $i$-de eigenwaarde is de fout 2 keer zo groot als bij de $(i-1)$-de eigenwaarde. Dit komt omdat de bisectiemethode het verschil niet kan uitmaken tussen alle verschillende eigenwaarden omdat de afstanden ertussen (=0) te klein zijn.
 	A\[\left[ \begin{array}{cccccc}
 6 & 0 & 0 & 0 & 0 \\  
 0 & 6 & 0 & 0 & 0 \\  
@@ -260,7 +260,27 @@ Tests ter controle van de werking van deze Matlab- functies zijn hieronder weerg
 \end{array}	\right] \]
 
 	\item Gewone symmetrische tridiagonale matrices, met het zoekinterval van verschillende groottes, positief/negatief,...
-
 \end{itemize}
+
+\opgave{9}
+We willen bepaalde eigenwaardes vinden, bijvoorbeeld de eerste 7 eigenwaardes van de matrix. Vanuit de theorie verwachten we dat de bisectiemethode een rekentijd van \textit{O}(m) nodig heeft per eigenwaarde. Eigenvectoren kunnen dan makkelijk met inverse iteratie bepaald worden in \textit{O}(1). \linebreak
+Met de QR methode moeten we meteen alle eigenwaarden (en eigenvectoren) berekenen. Dit zorgt voor een veel grotere rekencomplexiteit voor grote matrices wanneer slechts een beperkt aantal eigenwaarden en/of eigenvectoren gevraagd is.
+De figuren \ref{opgave9lin} en \ref{opgave9log} illustreren dat dit inderdaad het geval is.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=1\textwidth]{opgave9lin.eps}
+\end{center}
+\caption{Opgave 9. QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
+\label{opgave9lin}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=1\textwidth]{opgave9log.eps}
+\end{center}
+\caption{Opgave 9. QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
+\label{opgave9log}
+\end{figure}
 
 \end{document}

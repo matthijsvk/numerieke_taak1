@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.4.6)  9 APR 2015 00:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2015.4.6)  9 APR 2015 12:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -418,7 +418,7 @@ e
 \c@lstlisting=\count120
  [1
 
-{c:/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{c:/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \hbox (badness 10000) in paragraph at lines 62--64
 \OT1/cmr/m/n/10 ^^Se^^Senmaal \OT1/cmr/m/it/10 O\OT1/cmr/m/n/10 ($\OML/cmm/m/it
 /10 n[]$\OT1/cmr/m/n/10 ) re-ken-werk.
@@ -434,13 +434,13 @@ Package epstopdf Info: Source file: <opgave3.eps>
 df opgave3.eps>
 (epstopdf)             \includegraphics on input line 67.
 Package epstopdf Info: Output file is already uptodate.
-<opgave3-eps-converted-to.pdf, id=18, 421.575pt x 316.18124pt>
+<opgave3-eps-converted-to.pdf, id=22, 421.575pt x 316.18124pt>
 File: opgave3-eps-converted-to.pdf Graphic file (type pdf)
 
 <use opgave3-eps-converted-to.pdf>
 Package pdftex.def Info: opgave3-eps-converted-to.pdf used on input line 67.
 (pdftex.def)             Requested size: 345.0pt x 258.75406pt.
- [2 <./opgave3-eps-converted-to.pdf>]
+ [3 <./opgave3-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <opgave4.eps>
 (epstopdf)                    date: 2015-04-07 23:58:54
 (epstopdf)                    size: 21100 bytes
@@ -452,7 +452,7 @@ df opgave4.eps>
 (epstopdf)             \includegraphics on input line 79.
 Package epstopdf Info: Output file is already uptodate.
 
-<opgave4-eps-converted-to.pdf, id=28, 421.575pt x 316.18124pt>
+<opgave4-eps-converted-to.pdf, id=31, 421.575pt x 316.18124pt>
 File: opgave4-eps-converted-to.pdf Graphic file (type pdf)
 
 <use opgave4-eps-converted-to.pdf>
@@ -466,14 +466,13 @@ Underfull \hbox (badness 10000) in alignment at lines 92--92
 Missing character: There is no â in font cmbx10!
 Missing character: There is no € in font cmbx10!
 Missing character: There is no ¢ in font cmbx10!
-[3 <./opgave4-eps-converted-to.pdf>]
+[4 <./opgave4-eps-converted-to.pdf>] [5]
 
-LaTeX Warning: Reference `opgave8.eps' on page 4 undefined on input line 116.
+LaTeX Warning: Reference `opgave8.eps' on page 6 undefined on input line 116.
 
-[4]
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 121.
 
- (c:/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+(c:/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Try loading font information for TS1+pcr on input line 146.
@@ -502,7 +501,7 @@ Overfull \hbox (33.80365pt too wide) in paragraph at lines 161--162
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[5]
+[6]
 Overfull \hbox (14.60345pt too wide) in paragraph at lines 209--210
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -519,7 +518,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--212
 Overfull \vbox (1.39993pt too high) detected at line 220
  []
 
-[6]
+[7]
 Package epstopdf Info: Source file: <opgave8.eps>
 (epstopdf)                    date: 2015-04-08 22:46:20
 (epstopdf)                    size: 17520 bytes
@@ -530,7 +529,7 @@ Package epstopdf Info: Source file: <opgave8.eps>
 df opgave8.eps>
 (epstopdf)             \includegraphics on input line 224.
 Package epstopdf Info: Output file is already uptodate.
- <opgave8-eps-converted-to.pdf, id=48, 421.575pt x 316.18124pt>
+ <opgave8-eps-converted-to.pdf, id=52, 421.575pt x 316.18124pt>
 File: opgave8-eps-converted-to.pdf Graphic file (type pdf)
 
 <use opgave8-eps-converted-to.pdf>
@@ -546,7 +545,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 240--241
 
  []
 
-[7 <./opgave8-eps-converted-to.pdf>]
+[8] [9 <./opgave8-eps-converted-to.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
@@ -556,16 +555,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
 
-[8] (./Main_Article_NMB.aux)
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 266--269
+\OT1/cmr/m/n/10 ke-lijk met in-verse ite-ra-tie be-paald wor-den in \OT1/cmr/m/
+it/10 O\OT1/cmr/m/n/10 (1).
+ []
+
+Package epstopdf Info: Source file: <opgave9lin.eps>
+(epstopdf)                    date: 2015-04-09 12:30:38
+(epstopdf)                    size: 17915 bytes
+(epstopdf)             Output file: <opgave9lin-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-04-09 12:30:45
+(epstopdf)                    size: 9764 bytes
+(epstopdf)             Command: <repstopdf --outfile=opgave9lin-eps-converted-t
+o.pdf opgave9lin.eps>
+(epstopdf)             \includegraphics on input line 272.
+Package epstopdf Info: Output file is already uptodate.
+<opgave9lin-eps-converted-to.pdf, id=67, 421.575pt x 316.18124pt>
+File: opgave9lin-eps-converted-to.pdf Graphic file (type pdf)
+
+<use opgave9lin-eps-converted-to.pdf>
+Package pdftex.def Info: opgave9lin-eps-converted-to.pdf used on input line 272
+.
+(pdftex.def)             Requested size: 345.0pt x 258.75406pt.
+Package epstopdf Info: Source file: <opgave9log.eps>
+(epstopdf)                    date: 2015-04-09 12:30:36
+(epstopdf)                    size: 22739 bytes
+(epstopdf)             Output file: <opgave9log-eps-converted-to.pdf>
+(epstopdf)                    date: 2015-04-09 12:30:48
+(epstopdf)                    size: 10130 bytes
+(epstopdf)             Command: <repstopdf --outfile=opgave9log-eps-converted-t
+o.pdf opgave9log.eps>
+(epstopdf)             \includegraphics on input line 280.
+Package epstopdf Info: Output file is already uptodate.
+
+<opgave9log-eps-converted-to.pdf, id=68, 421.575pt x 316.18124pt>
+File: opgave9log-eps-converted-to.pdf Graphic file (type pdf)
+
+<use opgave9log-eps-converted-to.pdf>
+Package pdftex.def Info: opgave9log-eps-converted-to.pdf used on input line 280
+.
+(pdftex.def)             Requested size: 345.0pt x 258.75406pt.
+ [11 <./opgave9lin-eps-converted-to.pdf>]
+[12 <./opgave9log-eps-converted-to.pdf>] (./Main_Article_NMB.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 6400 strings out of 493109
- 87579 string characters out of 6138588
- 224592 words of memory out of 5000000
- 9775 multiletter control sequences out of 15000+600000
+ 6412 strings out of 493109
+ 87917 string characters out of 6138588
+ 250242 words of memory out of 5000000
+ 9785 multiletter control sequences out of 15000+600000
  10421 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,18n,42p,998b,1280s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -584,10 +628,10 @@ msfonts/cm/cmsy10.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy7.pfb><c:/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
 fb><c:/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/tex
 live/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on Main_Article_NMB.pdf (8 pages, 221942 bytes).
+Output written on Main_Article_NMB.pdf (12 pages, 236326 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 79 compressed objects within 1 object stream
+ 141 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,17 +1,15 @@
-clc;clear;
-A =[ 3     6     0     0     0     0;
-     6     3     1     0     0     0;
-     0     1     3     2     0     0;
-     0     0     2     3     3     0;
-     0     0     0     3     3     4;
-     0     0     0     0     4     3];
- 
-n = 100;
-A = diag(randi(n,n,1));%randi(n)*eye(n)
-offdiag = randi(n,n-1,1);
+clc;clear; format SHORTE
+A =[ 3     6     0     ;
+     6     3     1     ;
+     0     1     3     ];
+     
+ eig(A)
+n = 300;
+A = diag(randi(10,n,1));%diag(randi(n,n,1));%randi(n)*eye(n)
+offdiag = ones(n-1,1);%randi(5,n-1,1);
 A = A + diag(offdiag,1) + diag(offdiag,-1);
 
- [E,Res,nbSteps]= bisection(A,-10000,10000,1e-14);
+ [E,Res,nbSteps]= bisection(A,-10,10,1e-13);
  
  eigA= eig(A);
  padconcatenation(E, eigA,2)
