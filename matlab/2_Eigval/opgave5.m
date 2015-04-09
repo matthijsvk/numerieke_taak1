@@ -3,8 +3,8 @@
 clc;clear;close all
 
 load mat1.txt;
-mat1 = hess(mat1);
-[n,m]=size(mat1);
+mat1 = hess(rand(1000));
+[n,m]=size(mat1)
 eigMat1 = eig(mat1);
 maxit = 20;
 

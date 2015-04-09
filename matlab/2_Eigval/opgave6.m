@@ -1,10 +1,10 @@
 % Dit bestand analyseert de convergentie van de arnoldi methode
 clc;clear;close all
-m = 1000;
-maxit = 100;
+m = 100;
+maxit = 50;
 
-A = sprand(m,m,0.00001);
-Lambda = eigs(A,5,10);
+A = 10^10*sprand(m,m,0.05);
+Lambda = eigs(A);
 b = rand(m,1);
 
 res = rand(1,1);
@@ -21,7 +21,7 @@ for n=1:maxit
       break;
   end
   Q(:,n+1) = v/H(n+1,n);
-  ritz = (eigs(H(1:size(H,1)-1,:)))
+  ritz = (eigs(H(1:size(H,1)-1,:)));
   if size(ritz,1) < size(Lambda,1)
       ritz = [ritz ; zeros(size(Lambda,1)-size(ritz,1),1)];
   end
@@ -30,3 +30,6 @@ end;
 
 Lambda
 semilogy(res,'-o')
+
+[H, Q] = arnoldi(A, b, maxit);
+LambdaArnoldi = (eigs(H(1:size(H,1)-1,:)))
