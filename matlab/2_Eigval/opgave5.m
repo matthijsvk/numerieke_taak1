@@ -14,16 +14,26 @@ maxit = 20;
 
 %QR met Rayleigh quotiënt shift
 [eRay,resRay]=qr_shiftrayleigh(mat1);
-figure;
-semilogy(resRay);
 
 %gelijktijdige
-[V,eGelijk,resGelijk]=gelijktijdige_it_met_res(mat1,eye(n),maxit);
+[eGelijk,lambdaGelijk,resGelijk]=gelijktijdige_it_met_res(mat1,eye(n),maxit);
+
+%raleigh
+[lambdaRayEnkel,eRayEnkel,resRayEnkel]=rayleigh_met_res(mat1,rand(n,1),maxit);
+lambdaRayEnkel
+eigMat1
 
 %hold on
 figure(2)
-semilogy(1:30,resZonder(:,1:30),'-o');
+semilogy(resRay,'r-d','LineWidth',5);
 hold on
-semilogy(resRay,'r:d');
-legend('qrZonder', 'qrRayleighShift', 'qrSimultaneous ')
-xlabel('Aantal iteratiestappen');ylabel('Residu')
+semilogy(1:size(resGelijk,2),resGelijk,'g--s','LineWidth',5);
+hold on
+semilogy(resRayEnkel(1:5),'m-.p','LineWidth',5);
+Legend = legend( 'QR with rayleigh shift', 'Simultaneous iteration', 'Rayleigh iteration');
+set(Legend,'FontSize',20);
+X = xlabel('Aantal iteratiestappen');
+set(X,'FontSize',20);
+Y = ylabel('Residu');
+set(Y,'FontSize',20);
+set(gca,'fontsize',20);
