@@ -17,7 +17,7 @@
 
 De arnoldi methode is een methode om een hessenberg matrix te maken uit de matrix(A) waarvan je de eigenwaarden zoekt. De kracht van de Arnoldi methode is dat deze methode iteratief een hessenberg matrix opbouwt die telkens groter wordt. De eigenwaarden van die groeiende matrix, de zogenaamde ritz waarden zijn een goede benadering voor de eigenwaarden van de matrix A zelf. Alhoewel er in het begin veel minder ritz waarden zijn dan effectieve eigenwaarden van de matrix A, zijn er toch vrij snel goede benaderingen voor alle eigenwaarden voor de matrix A in de ritz waarden. Dit komt omdat A hier een ijle matrix is en de eigenwaarden dicht bij elkaar liggen, dan is 1 ritz waarde genoeg om meerdere eigenwaarden van A te benaderen. Alhoewel de benaderingen zeer ruw zijn in met zo een klein aantal iteraties zien we toch dat met maar 40 iteraties we in dit geval al maar een gemiddelde fout hebben van 10 $\%$. Dit is niet weinig, maar we hebben dit wel met weinig rekenwerk kunnen vinden. In de grafiek zijn we ook dat de 20 grootste eigenwaarden beter benaderd worden door de ritz waarden. Dit is omdat de ritz waarden sneller convergeren naar de uitshieters. 
 
-\begin{figure}
+\begin{figure}[b]
 \noindent \includegraphics[width=1\linewidth]{Opgave6.eps}
 \caption{Convergentie}
 \label{figuurtje}

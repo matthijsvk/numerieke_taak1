@@ -9,9 +9,29 @@ A
 A = hess(A);
 figure;
 for i = 1:n
-    ax =scatter(eig(A(1:i,1:i)),i*ones(i,1));
+    (eig(A(1:i,1:i)));
+    if i == 1
+        string1 = 'g--o';
+        string2 = 'g-';
+    elseif i == 2
+        string1 = 'm--o';
+        string2 = 'm-';
+    elseif i == 3
+        string1 = 'b--o';
+        string2 = 'b-';
+    elseif i == 4
+        string1 = 'r--o';
+        string2 = 'r-';
+    elseif i == 5
+        string1 = 'c--o';
+        string2 = 'c-';
+    end
+    stem(eig(A(1:i,1:i)),(n-i+1)*ones(i,1),string1);
+    hold on
+    plot([-5:10],(n-i+1)*ones(16,1),string2);
     hold on
 end
-plot(2);
+
+
 title('Eigenwaarden van submatrices van A');
 axis([-5 10 0 6])
