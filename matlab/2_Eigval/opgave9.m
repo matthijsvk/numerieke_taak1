@@ -1,6 +1,6 @@
 clc;clear;
 
-tests = [10, 50,100,500]'
+tests = [10, 50,100, 200, 300, 400, 500]'
 indexTests = 1;
 durations = zeros(size(tests,1),2);
 while indexTests<= size(tests,1)
