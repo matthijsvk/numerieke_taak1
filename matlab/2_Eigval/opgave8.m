@@ -9,7 +9,7 @@ A = diag(randi(10,n,1));%diag(randi(n,n,1));%randi(n)*eye(n)
 offdiag = ones(n-1,1);%randi(5,n-1,1);
 A = A + diag(offdiag,1) + diag(offdiag,-1);
 
- [E,Res,nbSteps]= bisection(A,-10,10,1e-13);
+ [E,Res,nbSteps]= bisection(A,-1000,1000,1e-13);
  
  eigA= eig(A);
  padconcatenation(E, eigA,2)

@@ -33,4 +33,13 @@ for k = 3:n
         s = s+1;        % sign change means new eigenvalue found -> increment s (new eigval found in interval (-inf,shift)
         prevsign = - prevsign;
     end
+    
+    if norm(p(k)) > 1000
+        p(k) = p(k) / 1000;
+        p(k-1) = p(k-1) / 1000;
+    elseif norm(p(k)) < 0.001
+        p(k) = p(k) * 1000;
+        p(k-1) = p(k-1) * 1000;
+    end
+        
 end
