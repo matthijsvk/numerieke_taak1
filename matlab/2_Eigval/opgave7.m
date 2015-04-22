@@ -23,8 +23,8 @@ for i = 1:n
         string1 = 'r--o';
         string2 = 'r-';
     elseif i == 5
-        string1 = 'c--o';
-        string2 = 'c-';
+        string1 = 'k--o';
+        string2 = 'k-';
     end
     stem(eig(A(1:i,1:i)),(n-i+1)*ones(i,1),string1);
     hold on
@@ -32,6 +32,8 @@ for i = 1:n
     hold on
 end
 
+
+set(gca,'ytick',[])
 
 title('Eigenwaarden van submatrices van A');
 axis([-5 10 0 6])

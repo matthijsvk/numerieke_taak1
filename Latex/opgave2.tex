@@ -14,10 +14,10 @@
 
 \opgave2
 a) Een norm van een vector is minimaal wanneer die vector de nulvector is.
-Dat betekent dat $||Ax-\rho x||_{2}$ minimaal is wanneer $x \rho = Ax$ (scalar vermenigvuldiging is commutatief). We kunnen deze vergelijking oplossen naar $\rho$ door het te zien als een kleinste kwadraten probleem waarbij Ax een gekende vector is, x een gekende matrix/vector en $\rho$ is de onbekende. We vermenigvuldigen de vergelijking links met $x^T$ en bekomen $x^{T}x \rho = x^{T}Ax$. Omdat $x^{T}x$ een scalar is kunnen we hierdoor delen wat ons brengt naar $\rho = \frac{ x^{T}Ax}{x^{T}x}$. Wat inderdaad het raleigh quotient is.\\
+Dat betekent dat $||Ax-\rho x||_{2}$ minimaal is wanneer $x \rho = Ax$ (scalaire vermenigvuldiging is commutatief). We kunnen deze vergelijking oplossen naar $\rho$ door het te zien als een kleinste kwadraten probleem waarbij Ax een gekende vector is, x een gekende matrix/vector en $\rho$ is de onbekende. We vermenigvuldigen de vergelijking links met $x^T$ en bekomen $x^{T}x \rho = x^{T}Ax$. Omdat $x^{T}x$ een scalar is kunnen we hierdoor delen wat ons brengt naar $\rho = \frac{ x^{T}Ax}{x^{T}x}$. Dit is inderdaad het Rayleigh quoti\"{e}nt.\\
 
 
-b)Het grootte conditie getal van $A-\mu I$ betekent dat perturbatie fouten zwaar doorwegen. Deze perturbatie fouten worden echter alleen versterkt in de richting naar de vector die we zoeken en in alle andere richtingen verzwakt. Hierdoor blijft de iteratie nog steeds gaan in de richting van de juiste eigenvector.
+b)Als \mu naar $\lambda(i)$ gaat, wordt het stelsel meer singulier, dus het conditiegetal van $A-\mu I$ groter. Dit betekent dat perturbatiefouten zwaar doorwegen. Deze perturbatiefouten worden echter alleen versterkt in de richting van de vector die we zoeken en in alle andere richtingen verzwakt. Hierdoor blijft de iteratie nog steeds doorgaan in de richting van de juiste eigenvector en blijft de fout beperkt.
 
 
 \end{document}

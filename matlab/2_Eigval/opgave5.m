@@ -3,8 +3,8 @@
 clc;clear;close all
 
 load mat1.txt;
-mat1 = hess(rand(1000));
-[n,m]=size(mat1)
+mat1 = hess(mat1);
+[n,m]=size(mat1);
 eigMat1 = eig(mat1);
 maxit = 20;
 
@@ -12,7 +12,7 @@ maxit = 20;
 %QR zonder shift
 [eZonder,resZonder]=qr_zonder(mat1);
 
-%QR met Rayleigh quotiënt shift
+%QR met Rayleigh quotiï¿½nt shift
 [eRay,resRay]=qr_shiftrayleigh(mat1);
 
 %gelijktijdige
@@ -25,15 +25,11 @@ eigMat1
 
 %hold on
 figure(2)
-semilogy(resRay,'r-d','LineWidth',5);
+semilogy(resRay,'r-d');
 hold on
-semilogy(1:size(resGelijk,2),resGelijk,'g--s','LineWidth',5);
+semilogy(1:size(resGelijk,2),resGelijk,'g--s');
 hold on
-semilogy(resRayEnkel(1:5),'m-.p','LineWidth',5);
+semilogy(resRayEnkel(1:5),'b-.o');
 Legend = legend( 'QR with rayleigh shift', 'Simultaneous iteration', 'Rayleigh iteration');
-set(Legend,'FontSize',20);
 X = xlabel('Aantal iteratiestappen');
-set(X,'FontSize',20);
 Y = ylabel('Residu');
-set(Y,'FontSize',20);
-set(gca,'fontsize',20);

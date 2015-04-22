@@ -26,7 +26,7 @@ res = [];
 while abs(A(n,n-1))>1.e-13
    res = [res abs(A(n,n-1))];
    [q,r]=qr(A);
-   A = r*q;
+   A = r*q
 end
 res = [res abs(A(n,n-1))];
 disp(sprintf('residu = %.1e', abs(A(n,n-1))))
