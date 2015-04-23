@@ -351,24 +351,17 @@ Tests ter controle van de werking van deze Matlab- functies zijn hieronder weerg
 \end{itemize}
 
 \opgave{9}
-We willen bepaalde eigenwaardes vinden, bijvoorbeeld de eerste 7 eigenwaardes van de matrix. Vanuit de theorie verwachten we dat de bisectiemethode een rekentijd van \textit{O}(m) nodig heeft per eigenwaarde. Eigenvectoren kunnen dan makkelijk met inverse iteratie bepaald worden in \textit{O}(m). \linebreak
+We willen bepaalde eigenwaardes vinden, bijvoorbeeld de eerste 7 eigenwaardes van de matrix. Vanuit de theorie verwachten we dat de bisectiemethode een rekentijd van \textit{O}(m) nodig heeft per eigenwaarde. Eigenvectoren kunnen dan makkelijk met inverse iteratie bepaald worden in \textit{O}(m).\\
 Met de QR methode moeten we meteen alle eigenwaarden (en eigenvectoren) berekenen. Dit zorgt voor een veel grotere rekencomplexiteit voor grote matrices wanneer slechts een beperkt aantal eigenwaarden en/of eigenvectoren gevraagd is.
-De figuren \ref{opgave9lin} en \ref{opgave9log} illustreren dat dit inderdaad het geval is.
+Figuur \ref{opgave9} illustreert dat dit inderdaad het geval is.
 
-\begin{figure}
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave9lin.eps}
 \end{center}
 \caption{Opgave 9. QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
-\label{opgave9lin}
+\label{opgave9}
 \end{figure}
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=1\textwidth]{opgave9log.eps}
-\end{center}
-\caption{Opgave 9. QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
-\label{opgave9log}
-\end{figure}
 
 \end{document}
