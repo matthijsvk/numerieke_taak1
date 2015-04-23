@@ -48,7 +48,7 @@ We beginnen door een QR-factorisatie te berekenen van $A_{0}$ met eender welke m
   $b^{(i)} = b^{(i)}(:n,:)$\\
  }
  
-% \caption{How to compute incremental least squares solution with QR factorisation}
+\caption{How to compute incremental least squares solution with QR factorisation}
 \end{algorithm}
 \end{framed}
 
@@ -129,20 +129,21 @@ Het nadeel van Rayleigh iteratie is dat je convergeert naar een eigenwaarde die 
 \label{opgave5}
 \end{figure}
 
+
 \opgave{6}
 
-De Arnoldi methode berekent iteratief de eigenwaarden van een matrix A. Dit gebeurt door een Hessenberg matrix te maken van A, die in iedere stap groter wordt. De eigenwaarden van die groeiende matrix, de zogenaamde ritz waarden, zijn een goede benadering voor de eigenwaarden van de matrix A. Alhoewel er in het begin veel minder ritz waarden zijn dan eigenwaarden van A, vormen de ritz waarden toch vrij snel goede benaderingen voor alle eigenwaarden. Dit is vooral effectief voor ijle matrices omdat de eigenwaarden daarvan dicht bij elkaar liggen. \'{E}\'{e}n ritz waarde is dan genoeg om meerdere eigenwaarden van A te benaderen. Alhoewel de benaderingen zeer ruw zijn met zo een klein aantal iteraties zien we toch dat we hier met maar 40 iteraties nog slechts een gemiddelde fout hebben van 10 $\%$. Dit is niet weinig, maar we hebben dit wel met weinig rekenwerk kunnen vinden. In figuur~\ref{opgave6} zien we ook dat de 20 grootste eigenwaarden beter benaderd worden door de ritz waarden. Dit is omdat de ritz waarden sneller convergeren naar de uitschieters. 
-\linebreak Er valt op te merken dat willekeurige $n\times n$ matrices \'{e}\'{e}n eigenwaarde hebben die ongeveer n keer de gemiddelde waarde van de elementen van die matrix is, terwijl alle andere eigenwaarden rond 0 gegroepeerd zijn. De Arnoldi methode zal heel snel convergeren naar die uitschieter, die meestal de meest interessante eigenwaarde is. In dit geval convergeert in 40 iteraties de grootste ritz waarde naar de grootste eigenwaarde met machinenauwkeurigheid.
+De Arnoldi methode berekent iteratief de eigenwaarden van een matrix A. Dit gebeurt door een Hessenberg matrix te maken van A, die in iedere stap groter wordt. De eigenwaarden van die groeiende matrix, de zogenaamde ritz waarden, zijn een goede benadering voor de eigenwaarden van de matrix A. Alhoewel er in het begin veel minder ritz waarden zijn dan eigenwaarden van A, vormen de ritz waarden toch vrij snel goede benaderingen voor alle eigenwaarden. Dit is vooral effectief voor ijle matrices omdat de eigenwaarden daarvan dicht bij elkaar liggen. \'{E}\'{e}n ritz waarde is dan genoeg om meerdere eigenwaarden van A te benaderen. \\
+Alhoewel de benaderingen zeer ruw zijn met zo een klein aantal iteraties zien we toch dat we hier met maar 40 iteraties nog slechts een gemiddelde fout hebben van 10 $\%$. Dit is niet weinig, maar we hebben dit wel met weinig rekenwerk kunnen vinden. In figuur~\ref{opgave6} zien we ook dat de 20 grootste eigenwaarden beter benaderd worden door de ritz waarden. Dit is omdat de ritz waarden sneller convergeren naar de uitschieters. \\
+Er valt op te merken dat willekeurige $n\times n$ matrices \'{e}\'{e}n eigenwaarde hebben die ongeveer n keer de gemiddelde waarde van de elementen van die matrix is, terwijl alle andere eigenwaarden rond 0 gegroepeerd zijn. De Arnoldi methode zal heel snel convergeren naar die uitschieter, die meestal de meest interessante eigenwaarde is. In dit geval convergeert in 40 iteraties de grootste ritz waarde naar de grootste eigenwaarde met machinenauwkeurigheid.
 
 \begin{figure}[h]
-\noindent \includegraphics[width=1\linewidth]{Opgave6.eps}
-\caption{Convergentie}
+\noindent \includegraphics[width=0.92\linewidth]{Opgave6.eps}
+\caption{Convergentie van de Arnoldi methode}
 \label{opgave6}
 \end{figure}
 
 
 \opgave{7}
-
 
 De interlacing eigenschap zegt dat bij een symmetrische tridiagonale matrix $\lambda ^{(k+1)}_{j} < \lambda ^{(k)}_{j} < \lambda ^{(k+1)}_{j+1}$, waarbij $\lambda ^{(k)}_{j}$ de $j^{e}$ eigenwaards is van de $k^{e}$ principiele submatrix. $\lambda _{1}$ is dan de kleinste eigenwaarde van $A^{k}$ en $\lambda _{k}$ de grootste. We zullen deze eigenschap illustreren aan de hand van het volgende voorbeeld.
 
@@ -165,6 +166,7 @@ A=\begin{bmatrix}
          \end{bmatrix}
          , ...
 \end{equation}
+
 \begin{figure}[h]
 \noindent \includegraphics[width=1\linewidth]{opgave7.eps}
 \caption{Interlacing}
@@ -192,32 +194,62 @@ Het is duidelijk aan de hand van de bovenstaande tabel dat de interlacing eigens
 
 \opgave{8}
 
-Algemene werkwijze om met de bisectiemethode de k-de eigenwaarde $\lambda_k$ te vinden van een symmetrische, tridiagonale matrix A van grootte m:
+De werkwijze om met de bisectiemethode alle eigenwaarden van een symmetrische, tridiagonale matrix A van grootte m te vinden binnen een interval I verloopt als volgt. Eerst zoeken we welke welke eigenwaarden zich in het interval bevinden. Als de indices van die eigenwaarden gekend zijn, kunnen we iedere eigenwaarde bepalen door bisectie. 
 
-\begin{enumerate}
- \item Kies een interval $I=[a0,b0]$ dat $\lambda_k$ bevat.
- \item Dan geldt, gebruik makende van de Sturm sequentie en de interlace- eigenschap van eigenwaarden van opeenvolgende submatrices $A^{i}$ van A: $s(b_0) >= k$ and $s(a_0) < k$ met $s(x)$ het aantal tekenwisselingen in de Sturm sequentie met shift $x$. Hieraan moet steeds voldaan zijn. Door $b_0$ en $a_0$ te verkleinen of vergroten kunnen we het interval I laten convergeren naar de waarde van $\lambda_k$.
- \item Gebruik de bisectietechniek om het interval te verkleinen: evalueer de Sturm sequentie $p_k(a_0) = det(A^{(k)} - a*I)$ voor $k=1\dots m$ waarbij $a=(a0+b0)/2$, en tel het aantal tekenwisselingen $s$. Als \'{e}\'{e}n van de sequentiewaarden 0 is, vergelijk je de volgende waarde met de laatste waarde die niet 0 was. Voor Matlab-code, zie hieronder.
- \item Als $s >= k$, vervang $b_0$ door $(a0+b0)/2$ en herhaal de iteratie, maar nu op het kleiner interval $I=[a_0,(a0+b0)/2]$.
- Indien $s < k$, vervang $a_0$ door $(a0+b0)/2$ en herhaal.
+\paragraph{•}
+Om de indices van alle eigenwaarden binnen een interval te bekomen, maken we gebruik van de Sturm sequentie en de interlacing eigenschap van de submatrices $A^{i}$ van A. \\
+Het aantal eigenwaarden in het interval $ (- \infty, a_0)$ is gelijk aan het aantal tekenveranderingen $s$ in de Sturm sequentie $ p_k (a_0) = det (A ^ {(k)} - a_0 * I) $, met k=1\dots m als m de grootte is van de matrix A (de index van de eerste eigenwaarde in het interval is dus $s+1$). Op dezelfde manier kunnen we het aantal eigenwaarden kleiner dan $ b_0 $ bepalen. Het aantal eigenwaarden in het interval $ [a_0, b_0] $ is dan het verschil tussen de twee. We kennen nu de indices van alle eigenwaarden in het interval I.
+
+\paragraph{•}
+Eenmaal de indices gekend, berekenen we iedere eigenwaarde $\lambda_k$ als volgt:
+	\begin{enumerate}
+ 	\item Kies een interval dat $\lambda_k$ bevat. $I=[a0,b0]$  is een goede keuze.
+ 	\item Dan geldt steeds, met  $s(x)$ het aantal tekenwisselingen in de Sturm sequentie met shift $x$: \(s(b_0) >= k \) en ook \( s(a_0) < k \). Hieraan moet steeds voldaan zijn. Door $b_0$ te verkleinen en $a_0$ te vergroten en te kijken of de $k^e$ eigenwaarde nog in het interval zit, kunnen we het interval I laten convergeren naar de waarde van $\lambda_k$.
+ 	\item Gebruik de bisectietechniek om het zoekinterval te verkleinen: evalueer de Sturm sequentie $p_k(a_0) = det(A^{(k)} - a*I)$ voor $k=1\dots m$ waarbij $a=(a0+b0)/2$, en tel het aantal tekenwisselingen $s$.\\ 
+ 	Speciaal geval: als \'{e}\'{e}n van de sequentiewaarden 0 is, vergelijk je de volgende waarde met de laatste waarde die niet 0 was om te kijken of er een tekenwisseling plaatsvond. 
+ 	\item Als $s >= k$ zit de gezochte eigenwaarde in de eerste helft van het interval $I=[a_0,(a0+b0)/2]$, dus vervang $b_0$ door $(a0+b0)/2$ en heritereer.\\
+ Indien $s < k$, vervang $a_0$ door $(a0+b0)/2$ en heritereer.
  \end{enumerate}
- Door herhaalde iteratie en verkleinen van het inverval convergeert het algoritme naar de k-de eigenwaarde van A. Een aantal grafieken van de convergentie naar de echte eigenwaarden zijn weergegeven in ~\ref{opgave8.eps}
- 
- Om nu alle eigenwaarden binnen een interval te bekomen, moeten we vinden welke eigenwaarden zich binnen dit interval bevinden.Met behulp van de Sturm sequentie en de interlacing eigenschap van de submatrices van A, kunnen we bepalen hoeveel eigenwaarden er zijn in het interval I. Het aantal eigenwaarden in het interval $ (- \infty, a_0]$ is gelijk aan het aantal tekenveranderingen in de Sturm sequentie $ p_k (a_0) = det (A ^ {(k)} - a_0 * I) $, met k=1\dots m als m de grootte is van de matrix A. De index van de eerste eigenwaarde in het interval is dan dit getal + 1. Op dezelfde manier kunnen we het aantal eigenwaarden kleiner dan $ b_0 $ bepalen. Het aantal eigenwaarden in het interval $ [a_0, b_0] $ is dan het verschil tussen de twee. We kennen dus de indices van eerste en laatste eigenwaarden in het interval I, en kunnen voor al deze indices het hierboven beschreven algoritme toepassen.
+Door het telkens halveren van het inverval convergeert het algoritme naar de $k^e$ eigenwaarde van A. We voeren dit uit voor iedere eigenwaarde in het interval.\\
+De essentie van de matlab code wordt weergegeven in algoritme ~\ref{matlabBisectionCore}. Voor de volledige code van de bisectiemethode, zie Bijlage 1. Voor de volledige code van de berekening van de Sturm sequentie, zie bijlage 2.
+Een aantal grafieken van de convergentie naar de echte eigenwaarden zijn weergegeven in figuur ~\ref{opgave8}.
 
 
-\begin{figure}
+\begin{framed}
+\begin{algorithm}[H]
+\begin{lstlisting}
+xl = a; 				%  lower bound
+xu = b; 				%  upper bound
+while xu-xl >= tol				% repeat until convergence
+        xn = (xl+xu)*.5; 		% middle of interval
+        [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, 
+        						% returns nb_eigenvalues in (-inf, xn)
+        if s >= k       % you counted too many (> k) eigenvalues, 
+        	xu = xn;	% so look in the first half of the interval
+        else            % not enough (< k) eigvalues  found, 
+        	xl = xn;	% search in second half of the interval
+            
+        end
+end
+
+\end{lstlisting}
+\caption{Essence of bisection method for finding the $k^{th}$ eigenvalue}
+\label{matlabBisectionCore}
+\end{algorithm}
+\end{framed}
+
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave8.eps}
 \end{center}
-\caption{Opgave 8. Bisectiemethode: evolutie van het residu voor berekeningen van een aantal eigenwaardes}
+\caption{Bisectiemethode: evolutie van het residu voor berekeningen van een aantal eigenwaardes}
 \label{opgave8}
 \end{figure}
 
-
-Tests ter controle van de werking van deze Matlab- functies zijn hieronder weergegeven. In alle gevallen waarin de methode convergeert, gebeurt dit 
+\paragraph{•}
+Tests ter controle van de werking van deze Matlab- functies zijn hieronder weergegeven. 
 \begin{itemize}
-	\item Een diagonale matrix met 5 gelijke eigenwaarden. Het algoritme vindt ze allemaal. Bij grote matrices van deze vorm worden vrij grote benaderingsfouten gemaakt voor de ide eigenwaarden. Bij de $i$-de eigenwaarde is de fout 2 keer zo groot als bij de $(i-1)$-de eigenwaarde. Dit komt omdat de bisectiemethode het verschil niet kan uitmaken tussen alle verschillende eigenwaarden omdat de afstanden ertussen (=0) te klein zijn.
+	\item Een diagonale matrix met 5 gelijke eigenwaarden. Het algoritme vindt ze allemaal. Bij grote matrices van deze vorm worden vrij grote benaderingsfouten gemaakt voor de ide eigenwaarden. Bij de $i^e$ eigenwaarde is de fout 2 keer zo groot als bij de $(i-1)^e$ eigenwaarde. Dit komt omdat de bisectiemethode het verschil niet kan uitmaken tussen alle verschillende eigenwaarden omdat de afstanden ertussen (=0) te klein zijn.
 	A\[\left[ \begin{array}{cccccc}
 6 & 0 & 0 & 0 & 0 \\  
 0 & 6 & 0 & 0 & 0 \\  
@@ -227,6 +259,7 @@ Tests ter controle van de werking van deze Matlab- functies zijn hieronder weerg
 \end{array} \right] \]\linebreak
 
 	\item Een diagonale matrix met allemaal verschillende positieve elementen. Bij  grotere matrices (vanaf ongeveer grootte 100) van deze vorm kunnen de opeenvolgende $p_i$'s zo in absolute waarde stijgen, dat ze na een tijd niet meer voorgesteld kunnen worden in de computer (er is geen compenserende factor $b_{k-1}^2$ in formule (30.9) in het HB, omdat de buitendiagonaalelementen allemaal nul zijn). Het algoritme vindt dan niet alle eigenwaarden.
+	Een oplossing hiervoor is om de $p_i$'s te herschalen zodra ze te groot (bv > 10000) of te klein (bv < 0.0001) worden. Zie de matlab code voor details.
 
 	\item Een willekeurige matrix, die dus niet tridiagonaal is, zelfs niet symmetrisch. De bissectie methode werkt hier inderdaad niet, zoals door de theorie voorspeld.
 \[	\left[	\begin{array}{ccccc}
@@ -258,9 +291,125 @@ Figuur \ref{opgave9} illustreert dat dit inderdaad het geval is.
 \begin{center}
 \includegraphics[width=1\textwidth]{opgave9lin.eps}
 \end{center}
-\caption{Opgave 9. QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
+\caption{QR en Bisectie, berekening 7 eerste eigenwaarden -en vectoren}
 \label{opgave9}
 \end{figure}
 
+
+
+\pagebreak
+
+Bijlage 1: De m-code voor de bisectie methode 
+\begin{framed}
+\begin{lstlisting}
+function [E,residue,nbSteps] = bisection(A,a,b,tol)
+% Eigenvalue of tridiagonal matrix using the bisection method
+%   A       The matrix 
+%   a       The lower bound of the interval
+%   b       The upper bound of the interval
+%   tol     The precision with which to determine the eigenvalues
+
+%   E       The column vector with resulting eigenvalues
+%   residu  The matrix with residues after each step, one row per
+%   eigenvalue calculation
+
+[p,sBeforeA0] = sturmSeq(A,a);
+[p,sBeforeB0] = sturmSeq(A,b); 
+ % sBeforeA0 = number of eigvals before the interval, 
+ % so first eigval in interval has index sBeforeA0 + 1
+nbEigInterval = sBeforeB0 - sBeforeA0;
+E = zeros(nbEigInterval,1);
+residue = zeros(nbEigInterval,1);
+nbSteps = zeros(nbEigInterval,1);
+
+n = size(A,1);
+eigA = eig(A);
+
+for k=sBeforeA0+1:sBeforeB0
+    % bisection for locating k'th eigenvalue
+    xl = a; %   lower bound
+    xu = b; %   upper bound
+    i = 1;  %   used for the residue
+    exactLambda = eigA(k); %    this too
+    x= rand(n,1);          %    this too
+    
+    while xu-xl >= tol
+        xn = (xl+xu)*.5;
+        i = i+1;
+        [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, 
+        						% returns nb_eigenvalues in (-inf, xn)
+        residue(k - sBeforeA0,i) = norm(exactLambda*x - xn*x);
+        
+        if s >= k       % you counted too much, 
+        				% so it's located in the first half of the interval
+            xu = xn;
+        else            % not enough eigvalues found yet, 
+        				% search in second half of the interval
+            xl = xn;
+        end
+    end
+    
+    E(k - sBeforeA0) = xn;    %save calculated eigenvalues
+    nbSteps(k - sBeforeA0,1) = i;
+end
+\end{lstlisting}
+\label{matlabBisection}
+\end{framed}
+
+
+\pagebreak
+Bijlage 2: De m-code voor de Sturm sequentie
+\begin{framed}
+\begin{lstlisting}
+function [ p,s ] = sturmSeq( A, shift )
+% This function returns the sequence of det(A - xI) 
+% and the number of sign changes
+%   A = tridiagonal matrix
+%   lamb = guess eigen value (used in bisection method)
+%   p = a pvector polynomials (p_1 to p_n)
+%   s = the number of sign changes
+
+n= size(A,1);
+p = zeros(n,1);
+s = 0; 
+prevsign= 1; %p(0) = 1
+
+% p(-1) = 0 & p(0) = 1
+p(1) = (A(1,1) - shift) * 1 - 0^2 * 0;  
+if sign(p(1))*prevsign < 0
+    s = s+1; 
+    prevsign = - prevsign;
+end
+
+p(2) = (A(2,2) - shift)*p(1) - A(1,2)^2 * 1;
+if sign(p(2))*prevsign < 0
+    s = s+1; 
+    prevsign = - prevsign;
+end
+
+% for the rest, we can just use the formula
+for k = 3:n
+	%formula (30.9)
+    % A(k,k) = a_k ; A(k,k-1) = b_k-1  because b_k-1 is the entry on 
+    % the k-1'th column of row k, and a_k is the k-th entry on that row 
+    p(k) = (A(k,k) - shift)*p(k-1) - A(k-1,k)^2 * p(k-2);
+    if sign(p(k))*prevsign < 0 
+        s = s+1; 	% sign change means new eigenvalue found 
+        			% in interval (-inf,shift]
+        prevsign = - prevsign;
+    end
+    
+    % scale the p_k's if they get too large or too small
+    if norm(p(k)) > 1000
+        p(k) = p(k) / 1000;
+        p(k-1) = p(k-1) / 1000;
+    elseif norm(p(k)) < 0.001
+        p(k) = p(k) * 1000;
+        p(k-1) = p(k-1) * 1000;
+    end
+    
+end
+\end{lstlisting}
+\end{framed}
 
 \end{document}
