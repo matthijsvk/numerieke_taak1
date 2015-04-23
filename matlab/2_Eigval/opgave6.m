@@ -25,7 +25,7 @@ for n=1:maxit
   %cond(H)
   ritz = eigs(H(1:size(H,1)-1,:),size(H,2));
   mins = [];
-  mins50 = [];
+  mins20 = [];
   currentMin= 0;
   for i = 1:size(Lambda,1)
     if Lambda(i) ~= 0
@@ -33,22 +33,27 @@ for n=1:maxit
     currentMin = min(abs(differences))/abs(real(Lambda(i)));
     mins = [mins currentMin];
     end
+    if i < 2
+        res1(n) = sum(mins);
+    end
     if i < 21
-    mins50 = [mins50 currentMin];
+    mins20 = [mins20 currentMin];
     end
   end
   res(n) = mean(mins);
-  res50(n) = mean(mins50);
+  res20(n) = mean(mins20);
       %res(n) = norm(abs(real(ritz(1:size(Lambda,1))))-abs(real(Lambda)))/norm(abs(real(Lambda)));
 end;
 
 mins
 Lambda
+res1
 semilogy(res,'g')
 hold on
-semilogy(res50,'r');
+semilogy(res20,'r');
 Legend = legend( 'Alle eigenwaarden', '20 grootste eigenwaarden');
-
+hold on
+semilogy(res1,'b');
 
 [H, Q] = arnoldi(A, b, maxit);
 LambdaArnoldi = eigs(H(1:size(H,1)-1,:),size(H,2));

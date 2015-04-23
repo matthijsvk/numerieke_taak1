@@ -132,7 +132,7 @@ Het nadeel van Rayleigh iteratie is dat je convergeert naar een eigenwaarde die 
 \opgave{6}
 
 De Arnoldi methode berekent iteratief de eigenwaarden van een matrix A. Dit gebeurt door een Hessenberg matrix te maken van A, die in iedere stap groter wordt. De eigenwaarden van die groeiende matrix, de zogenaamde ritz waarden, zijn een goede benadering voor de eigenwaarden van de matrix A. Alhoewel er in het begin veel minder ritz waarden zijn dan eigenwaarden van A, vormen de ritz waarden toch vrij snel goede benaderingen voor alle eigenwaarden. Dit is vooral effectief voor ijle matrices omdat de eigenwaarden daarvan dicht bij elkaar liggen. \'{E}\'{e}n ritz waarde is dan genoeg om meerdere eigenwaarden van A te benaderen. Alhoewel de benaderingen zeer ruw zijn met zo een klein aantal iteraties zien we toch dat we hier met maar 40 iteraties nog slechts een gemiddelde fout hebben van 10 $\%$. Dit is niet weinig, maar we hebben dit wel met weinig rekenwerk kunnen vinden. In figuur~\ref{opgave6} zien we ook dat de 20 grootste eigenwaarden beter benaderd worden door de ritz waarden. Dit is omdat de ritz waarden sneller convergeren naar de uitschieters. 
-\linebreak Er valt op te merken dat willekeurige $n\times n$ matrices \'{e}\'{e}n eigenwaarde hebben die ongeveer n keer de gemiddelde waarde van de elementen van die matrix is, terwijl alle andere eigenwaarden rond 0 gegroepeerd zijn. De Arnoldi methode zal heel snel convergeren naar die uitschieter, die meestal de meest interessante eigenwaarde is. 
+\linebreak Er valt op te merken dat willekeurige $n\times n$ matrices \'{e}\'{e}n eigenwaarde hebben die ongeveer n keer de gemiddelde waarde van de elementen van die matrix is, terwijl alle andere eigenwaarden rond 0 gegroepeerd zijn. De Arnoldi methode zal heel snel convergeren naar die uitschieter, die meestal de meest interessante eigenwaarde is. In dit geval convergeert in 40 iteraties de grootste ritz waarde naar de grootste eigenwaarde met machinenauwkeurigheid.
 
 \begin{figure}[h]
 \noindent \includegraphics[width=1\linewidth]{Opgave6.eps}
@@ -205,107 +205,6 @@ Algemene werkwijze om met de bisectiemethode de k-de eigenwaarde $\lambda_k$ te 
  
  Om nu alle eigenwaarden binnen een interval te bekomen, moeten we vinden welke eigenwaarden zich binnen dit interval bevinden.Met behulp van de Sturm sequentie en de interlacing eigenschap van de submatrices van A, kunnen we bepalen hoeveel eigenwaarden er zijn in het interval I. Het aantal eigenwaarden in het interval $ (- \infty, a_0]$ is gelijk aan het aantal tekenveranderingen in de Sturm sequentie $ p_k (a_0) = det (A ^ {(k)} - a_0 * I) $, met k=1\dots m als m de grootte is van de matrix A. De index van de eerste eigenwaarde in het interval is dan dit getal + 1. Op dezelfde manier kunnen we het aantal eigenwaarden kleiner dan $ b_0 $ bepalen. Het aantal eigenwaarden in het interval $ [a_0, b_0] $ is dan het verschil tussen de twee. We kennen dus de indices van eerste en laatste eigenwaarden in het interval I, en kunnen voor al deze indices het hierboven beschreven algoritme toepassen.
 
-\begin{framed}
-\begin{lstlisting}
-function [E,residue,nbSteps] = bisection(A,a,b,tol)
-% Eigenvalue of tridiagonal matrix using the bisection method
-%   A       The matrix 
-%   a       The lower bound of the interval
-%   b       The upper bound of the interval
-%   tol     The precision with which to determine the eigenvalues
-
-%   E       The column vector with resulting eigenvalues
-%   residu  The matrix with residues after each step, one row per
-%   eigenvalue calculation
-
-[p,sBeforeA0] = sturmSeq(A,a);
-[p,sBeforeB0] = sturmSeq(A,b); 
- % sBeforeA0 = number of eigvals before the interval, 
- % so first eigval in interval has index sBeforeA0 + 1
-nbEigInterval = sBeforeB0 - sBeforeA0;
-E = zeros(nbEigInterval,1);
-residue = zeros(nbEigInterval,1);
-nbSteps = zeros(nbEigInterval,1);
-
-n = size(A,1);
-eigA = eig(A);
-
-for k=sBeforeA0+1:sBeforeB0
-    % bisection for locating k'th eigenvalue
-    xl = a; %   lower bound
-    xu = b; %   upper bound
-    i = 1;  %   used for the residue
-    exactLambda = eigA(k); %    this too
-    x= rand(n,1);          %    this too
-    
-    while xu-xl >= tol
-        xn = (xl+xu)*.5;
-        i = i+1;
-        [p,s] = sturmSeq(A,xn); % sturmSeq with shift xn, 
-        						% returns nb_eigenvalues in (-inf, xn)
-        residue(k - sBeforeA0,i) = norm(exactLambda*x - xn*x);
-        
-        if s >= k       % you counted too much, 
-        				% so it's located in the first half of the interval
-            xu = xn;
-        else            % not enough eigvalues found yet, 
-        				% search in second half of the interval
-            xl = xn;
-        end
-    end
-    
-    E(k - sBeforeA0) = xn;    %save calculated eigenvalues
-    nbSteps(k - sBeforeA0,1) = i;
-end
-\end{lstlisting}
-\label{matlabBisection}
-\end{framed}
-
-
-
-\begin{framed}
-\begin{lstlisting}
-function [ p,s ] = sturmSeq( A, shift )
-% This function returns the sequence of det(A - xI) 
-% and the number of sign changes
-%   A = tridiagonal matrix
-%   lamb = guess eigen value (used in bisection method)
-%   p = a pvector polynomials (p_1 to p_n)
-%   s = the number of sign changes
-
-n= size(A,1);
-p = zeros(n,1);
-s = 0; 
-prevsign= 1; %p(0) = 1
-
-% p(-1) = 0 & p(0) = 1
-p(1) = (A(1,1) - shift) * 1 - 0^2 * 0;  
-if sign(p(1))*prevsign < 0
-    s = s+1; 
-    prevsign = - prevsign;
-end
-
-p(2) = (A(2,2) - shift)*p(1) - A(1,2)^2 * 1;
-if sign(p(2))*prevsign < 0
-    s = s+1; 
-    prevsign = - prevsign;
-end
-
-% for the rest, we can just use the formula
-for k = 3:n
-    % A(k,k) = a_k ; A(k,k-1) = b_k-1  because b_k-1 is the entry on 
-    % the k-1'th column of row k, and a_k is the k-th entry on that row 
-    % (b is offdiagonal element, a is diagonal element)
-    p(k) = (A(k,k) - shift)*p(k-1) - A(k-1,k)^2 * p(k-2);     %formula (30.9)
-    if sign(p(k))*prevsign < 0 
-        s = s+1; 	% sign change means new eigenvalue found 
-        			% in interval (-inf,shift)
-        prevsign = - prevsign;
-    end
-end
-\end{lstlisting}
-\label{matlabSturm}
-\end{framed}
 
 \begin{figure}
 \begin{center}
@@ -351,7 +250,7 @@ Tests ter controle van de werking van deze Matlab- functies zijn hieronder weerg
 \end{itemize}
 
 \opgave{9}
-We willen bepaalde eigenwaardes vinden, bijvoorbeeld de eerste 7 eigenwaardes van de matrix. Vanuit de theorie verwachten we dat de bisectiemethode een rekentijd van \textit{O}(m) nodig heeft per eigenwaarde. Eigenvectoren kunnen dan makkelijk met inverse iteratie bepaald worden in \textit{O}(m).\\
+We willen bepaalde eigenwaardes vinden, bijvoorbeeld de eerste 7 eigenwaardes van de matrix. Vanuit de theorie verwachten we dat de bisectiemethode een rekentijd van \textit{O}(m) nodig heeft per eigenwaarde. Eigenvectoren kunnen dan met \'{e}\'{e}n stap van inverse iteratie bepaald worden in \textit{O}(m).\\
 Met de QR methode moeten we meteen alle eigenwaarden (en eigenvectoren) berekenen. Dit zorgt voor een veel grotere rekencomplexiteit voor grote matrices wanneer slechts een beperkt aantal eigenwaarden en/of eigenvectoren gevraagd is.
 Figuur \ref{opgave9} illustreert dat dit inderdaad het geval is.
 
